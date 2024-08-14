@@ -4,20 +4,27 @@ import React, { useEffect, useState } from "react";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
+import axios from 'axios';
+import Cards from './Cards';
 
 function Freebook() {
-  const [list, setList] = useState([]);
-
+  const [book, setBook] = useState([]);
+ 
   useEffect(() => {
-    fetch("/list.json")
-      .then((response) => response.json())
-      .then((data) => {
-        const filteredData = data.filter((item) => item.category === "Free");
-        setList(filteredData);
-      })
-      .catch((error) => console.error("Error loading JSON:", error));
+    const getBook = async () => {
+      try {
+        const res = await axios.get("http://localhost:4001/book"); // Adjust URL if necessary
+        
+        const data = res.data.filter((data) => data.category === 'Free');
+        console.log(data);
+        setBook(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getBook();
   }, []);
-
+  
   const settings = {
     dots: true,
     infinite: false,
@@ -47,29 +54,20 @@ function Freebook() {
   };
 
   return (
-    <div className="max-w-screen-2xl container mx-auto md:px-20 m-20">
-      <h1 className="font-semibold text-xl pb-2">Free Books</h1>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam hic
-        aliquam vitae porro animi quae ipsam expedita placeat inventore
-        laudantium fugiat repellendus praesentium, facilis repudiandae doloribus
-        amet. Aperiam, doloribus commodi!
-      </p>
-      <Slider {...settings} className="my-slider">
-        {list.map((book) => (
-          <div key={book.id} className="p-4">
-            <div className="card bg-base-100 w-72 shadow-xl">
-              <figure>
-                <img src={book.image} alt={book.name} />
-              </figure>
-              <div className="card-body">
-                <h2 className="card-title">
-                  {book.name}
-                  <div className="badge badge-secondary">{book.category}</div>
-                </h2>
-                <p>{book.title}</p>
-              </div>
-            </div>
+    <div className="max-w-screen-2xl container mx-auto md:px-20 ">
+      <div>
+        <h1 className="font-semibold text-xl pb-2">Free Books</h1>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam hic
+          aliquam vitae porro animi quae ipsam expedita placeat inventore
+          laudantium fugiat repellendus praesentium, facilis repudiandae doloribus
+          amet. Aperiam, doloribus commodi!
+        </p>
+      </div>
+      <Slider {...settings}>
+        {book.map((item) => (
+          <div key={item._id} className="p-4">
+            <Cards item={item} />
           </div>
         ))}
       </Slider>

@@ -7,13 +7,13 @@ function Banner() {
   return (
     <>
     <div className='max-w-screen-2xl container mx-auto md:px-20 m-20 flex md:flex-row my-10'>
-        <div className='w-1/2 mt-32'>
+        <div className='w-full order-2 md:order-1 md:w-1/2 mt-12 md:mt-36'>
         <div className='space-y-12'>
             <h1 className='text-4xl font-bold'>
             Hello, welcome here to learn something{" "} 
             <span className='text-pink-600'>new everyday!!!</span>
             </h1>
-            <p className='text-xl'>
+            <p className=' text-sm md:text-xl'>
                 Lorem ipsum dolor sit amet consectetur, adipisicing elit.
                 Neque voluptas aliquid omnis hic, totam, tempora necessitatibus
                 sunt repellendus magnam, nisi quisquam. Ut optio nam, velit nemo 
@@ -33,9 +33,9 @@ function Banner() {
            <input type="text" className="grow" placeholder="Email" />
        </label>
             </div>
-            <button className="btn mt-6 btn-secondary">Secondary</button>
+            <button className="btn mt-6 btn-secondary">Get Started</button>
         </div>
-        <div className='w-1/2'>
+        <div className='order-1 w-full mt-20 md:w-1/2'>
           <img src="/Banner.jpg" className='w-85 h-85' alt="Banner" />
         </div>
     </div>

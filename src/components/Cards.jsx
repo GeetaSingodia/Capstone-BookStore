@@ -2,7 +2,7 @@
  import React from 'react'
 
  function Cards({ item }) {
-     //"https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
+     
    return (
    <>
    <div className='mt-4 my-3 p-3'>
@@ -10,7 +10,7 @@
    <figure>
      <img
        src={item.image}
-       alt="Shoes" />
+       alt={item.name} />
    </figure>
    <div className="card-body">
      <h2 className="card-title">
@@ -20,7 +20,8 @@
      <p>{item.title}</p>
     <div className="card-actions justify-between">
        <div className="badge badge-outline">${item.price}</div>
-       <div className="cursor-pointer px-2 py-1 rounded-full border-[2px] hover:bg-pink-500 hover:text-white duration-200">Buy Now</div>
+       <div className="cursor-pointer px-2 py-1 rounded-full border-[2px] hover:bg-pink-500 hover:text-white duration-200">
+        Buy Now</div>
      </div>
    </div>
  </div>
